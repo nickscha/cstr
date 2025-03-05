@@ -189,7 +189,7 @@ CSTR_API CSTR_INLINE float cstr_expt10(int e)
 
 CSTR_API CSTR_INLINE float cstr_parse_float(cstr s)
 {
-  int i;
+  long i;
   float r = 0.0f;
   float sign = 1.0f;
   float exp = 0.0f;
@@ -209,7 +209,7 @@ CSTR_API CSTR_INLINE float cstr_parse_float(cstr s)
       break;
     case 'E':
     case 'e':
-      exp = ((cstr_bool) exp) ? exp : 1.0f;
+      exp = ((cstr_bool)exp) ? exp : 1.0f;
       exp *= cstr_expt10(cstr_parse_int(cstr_substring(s, i + 1)));
       i = s.len;
       break;
@@ -218,7 +218,7 @@ CSTR_API CSTR_INLINE float cstr_parse_float(cstr s)
       exp *= 0.1f;
     }
   }
-  return (sign * r * (((cstr_bool) exp) ? exp : 1.0f));
+  return (sign * r * (((cstr_bool)exp) ? exp : 1.0f));
 }
 
 #endif /* CSTR_H */

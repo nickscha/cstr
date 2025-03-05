@@ -74,9 +74,9 @@ void cstr_test_cut_print(void)
   }
 }
 
-#define CSTR_TEST_FABS(x) ((x < 0.0f) ? -x : x)
+#define CSTR_TEST_FABS(x) (((float)x < 0.0f) ? (float)-x : (float)x)
 #define CSTR_TEST_FLOAT_EPS 0.00001f
-#define CSTR_TEST_FLOAT_COMPARISION(a, b) (CSTR_TEST_FABS(a - b) < CSTR_TEST_FLOAT_EPS)
+#define CSTR_TEST_FLOAT_COMPARISION(a, b) (CSTR_TEST_FABS((float)(a - b)) < CSTR_TEST_FLOAT_EPS)
 
 void cstr_test_parsing(void)
 {
