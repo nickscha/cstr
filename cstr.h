@@ -126,6 +126,34 @@ CSTR_API CSTR_INLINE cstr cstr_trim_right(cstr s)
   return (s);
 }
 
+CSTR_API CSTR_INLINE int cstr_index_of(cstr s, char c)
+{
+  long i;
+
+  for (i = 0; i < s.len; ++i)
+  {
+    if (s.data[i] == c)
+    {
+      return (i);
+    }
+  }
+  return (-1);
+}
+
+CSTR_API CSTR_INLINE int cstr_last_index_of(cstr s, char c)
+{
+  long i;
+
+  for (i = s.len; i > 0; --i)
+  {
+    if (s.data[i] == c)
+    {
+      return (i);
+    }
+  }
+  return (-1);
+}
+
 CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
 {
   cstr_cut_marker result = {0};
