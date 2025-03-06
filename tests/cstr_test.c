@@ -32,6 +32,8 @@ void cstr_test_basic_functions(void)
   assert(cstr_equals(cstr_trim(t5), CSTR("spaces")));
   assert(cstr_index_of(t5, 's') == 2);
   assert(cstr_last_index_of(t5, 's') == 7);
+  assert(cstr_index_of_substring(t1, CSTR("is")) == 2);
+  assert(cstr_index_of_substring(t1, CSTR("z")) == -1);
 }
 
 void cstr_test_cut(void)
@@ -99,6 +101,24 @@ void cstr_test_parsing(void)
 
 void cstr_test_advanced(void)
 {
+  cstr s1 = CSTR("test");
+  cstr s2 = CSTR("this is a long sequence and is a string");
+  assert(cstr_starts_with(s1, CSTR("te")));
+  assert(cstr_ends_with(s1, CSTR("st")));
+  assert(cstr_count_char(s1, 't') == 2);
+  assert(cstr_count_char(s1, 's') == 1);
+  assert(cstr_count_char(s1, ' ') == 0);
+  assert(cstr_count_substring(s2, CSTR("is")) == 3);
+  assert(cstr_is_numeric(s1) == false);
+  assert(cstr_is_numeric(CSTR("421312")) == true);
+  assert(cstr_is_alpha(s1) == true);
+  assert(cstr_contains(s1, CSTR("test")) == true);
+  assert(cstr_contains(s1, CSTR("es")) == true);
+  assert(cstr_contains(s1, CSTR("t")) == true);
+  assert(cstr_equals_ignore_case(s1, CSTR("test")) == true);
+  assert(cstr_equals_ignore_case(s1, CSTR("TEST")) == true);
+  assert(cstr_equals_ignore_case(s1, CSTR("tESt")) == true);
+  assert(cstr_equals_ignore_case(s1, CSTR("test ")) == false);
 }
 
 int main(void)

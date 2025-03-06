@@ -100,6 +100,38 @@ CSTR_API CSTR_INLINE cstr_bool cstr_equals(cstr a, cstr b)
   return (a.len == b.len && (!a.len || !cstr_memcmp(a.data, b.data, a.len)));
 }
 
+CSTR_API CSTR_INLINE cstr_bool cstr_equals_ignore_case(cstr a, cstr b)
+{
+  long i;
+  char ca;
+  char cb;
+
+  if (a.len != b.len)
+  {
+    return (false);
+  }
+
+  for (i = 0; i < a.len; ++i)
+  {
+    ca = a.data[i];
+    cb = b.data[i];
+
+    if (ca >= 'A' && ca <= 'Z')
+    {
+      ca += 32;
+    }
+    if (cb >= 'A' && cb <= 'Z')
+    {
+      cb += 32;
+    }
+    if (ca != cb)
+    {
+      return (false);
+    }
+  }
+  return (true);
+}
+
 CSTR_API CSTR_INLINE cstr cstr_substring(cstr s, long i)
 {
   if (i)
@@ -131,6 +163,94 @@ CSTR_API CSTR_INLINE cstr cstr_trim(cstr s)
   return (cstr_trim_right(cstr_trim_left(s)));
 }
 
+CSTR_API CSTR_INLINE cstr_bool cstr_starts_with(cstr s, cstr prefix)
+{
+  return (s.len >= prefix.len) && (cstr_memcmp(s.data, prefix.data, prefix.len) == 0);
+}
+
+CSTR_API CSTR_INLINE cstr_bool cstr_ends_with(cstr s, cstr suffix)
+{
+  return (s.len >= suffix.len) && (cstr_memcmp(s.data + s.len - suffix.len, suffix.data, suffix.len) == 0);
+}
+
+CSTR_API CSTR_INLINE cstr_bool cstr_contains(cstr s, cstr sub)
+{
+  long i;
+
+  if (sub.len == 0 || sub.len > s.len)
+  {
+    return (false);
+  }
+
+  for (i = 0; i <= s.len - sub.len; ++i)
+  {
+    if (cstr_memcmp(s.data + i, sub.data, sub.len) == 0)
+    {
+      return (true);
+    }
+  }
+  return (false);
+}
+
+CSTR_API CSTR_INLINE long cstr_count_char(cstr s, char c)
+{
+  long i;
+  long count = 0;
+  for (i = 0; i < s.len; ++i)
+  {
+    if (s.data[i] == c)
+    {
+      count++;
+    }
+  }
+  return (count);
+}
+
+CSTR_API CSTR_INLINE long cstr_count_substring(cstr s, cstr sub)
+{
+  long i;
+  long count = 0;
+
+  if (sub.len == 0 || sub.len > s.len)
+  {
+    return (count);
+  }
+
+  for (i = 0; i <= s.len - sub.len; ++i)
+  {
+    if (cstr_memcmp(s.data + i, sub.data, sub.len) == 0)
+    {
+      count++;
+      i += sub.len - 1;
+    }
+  }
+  return (count);
+}
+
+CSTR_API CSTR_INLINE cstr_bool cstr_is_numeric(cstr s)
+{
+  long i;
+
+  if (s.len == 0)
+  {
+    return (false);
+  }
+
+  for (i = 0; i < s.len; ++i)
+  {
+    if (s.data[i] < '0' || s.data[i] > '9')
+    {
+      return (false);
+    }
+  }
+  return (true);
+}
+
+CSTR_API CSTR_INLINE cstr_bool cstr_is_alpha(cstr s)
+{
+  return (cstr_is_numeric(s) == false);
+}
+
 CSTR_API CSTR_INLINE int cstr_index_of(cstr s, char c)
 {
   long i;
@@ -143,6 +263,24 @@ CSTR_API CSTR_INLINE int cstr_index_of(cstr s, char c)
     }
   }
   return ((int)-1);
+}
+
+CSTR_API CSTR_INLINE int cstr_index_of_substring(cstr s, cstr sub)
+{
+  long i;
+  if (sub.len == 0 || sub.len > s.len)
+  {
+    return (-1);
+  }
+
+  for (i = 0; i <= s.len - sub.len; ++i)
+  {
+    if (cstr_memcmp(s.data + i, sub.data, sub.len) == 0)
+    {
+      return ((int)i);
+    }
+  }
+  return (-1);
 }
 
 CSTR_API CSTR_INLINE int cstr_last_index_of(cstr s, char c)
