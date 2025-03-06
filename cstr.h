@@ -126,6 +126,11 @@ CSTR_API CSTR_INLINE cstr cstr_trim_right(cstr s)
   return (s);
 }
 
+CSTR_API CSTR_INLINE cstr cstr_trim(cstr s)
+{
+  return (cstr_trim_right(cstr_trim_left(s)));
+}
+
 CSTR_API CSTR_INLINE int cstr_index_of(cstr s, char c)
 {
   long i;
@@ -179,7 +184,8 @@ CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
   return (result);
 }
 
-CSTR_API CSTR_INLINE cstr_bool cstr_parse_bool(cstr s) {
+CSTR_API CSTR_INLINE cstr_bool cstr_parse_bool(cstr s)
+{
   return (cstr_equals(s, CSTR("1")) || cstr_equals(s, CSTR("true")));
 }
 

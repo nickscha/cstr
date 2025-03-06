@@ -29,6 +29,7 @@ void cstr_test_basic_functions(void)
   assert(cstr_equals(cstr_trim_left(t5), CSTR("spaces  ")));
   assert(cstr_equals(cstr_trim_right(t5), CSTR("  spaces")));
   assert(cstr_equals(cstr_trim_left(cstr_trim_right(t5)), CSTR("spaces")));
+  assert(cstr_equals(cstr_trim(t5), CSTR("spaces")));
   assert(cstr_index_of(t5, 's') == 2);
   assert(cstr_last_index_of(t5, 's') == 7);
 }
@@ -96,6 +97,10 @@ void cstr_test_parsing(void)
   assert(cstr_parse_bool(CSTR("false")) == false);
 }
 
+void cstr_test_advanced(void)
+{
+}
+
 int main(void)
 {
 
@@ -103,6 +108,7 @@ int main(void)
   cstr_test_cut();
   cstr_test_cut_print();
   cstr_test_parsing();
+  cstr_test_advanced();
 
   return 0;
 }
