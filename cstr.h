@@ -307,6 +307,19 @@ CSTR_API CSTR_INLINE cstr cstr_strip_quotes(cstr s)
   return (s);
 }
 
+CSTR_API CSTR_INLINE unsigned long cstr_hash(cstr s)
+{
+  unsigned long hash = 0;
+  long i;
+
+  for (i = 0; i < s.len; ++i)
+  {
+    hash = 31 * hash + (unsigned long) s.data[i];
+  }
+
+  return (hash);
+}
+
 CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
 {
   cstr_cut_marker result = {0};

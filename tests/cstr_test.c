@@ -126,6 +126,7 @@ void cstr_test_advanced(void)
   assert(cstr_equals_ignore_case(s1, CSTR("test ")) == false);
   assert(cstr_equals(cstr_strip_quotes(s3), CSTR("this string has quotes")) == true);
   assert(cstr_equals(cstr_strip_quotes(s4), CSTR("abc")) == true);
+  assert(cstr_hash(s1) == 3556498);
 }
 
 int main(void)
