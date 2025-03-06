@@ -91,12 +91,15 @@ void cstr_test_parsing(void)
   cstr i2 = CSTR("-123456");
   int r2 = cstr_parse_int(i2);
 
+  cstr h1 = CSTR("1A3F");
+
   assert(CSTR_TEST_FLOAT_COMPARISION(r1, 123456));
   assert(CSTR_TEST_FLOAT_COMPARISION(r2, -123456));
   assert(cstr_parse_bool(CSTR("1")) == true);
   assert(cstr_parse_bool(CSTR("true")) == true);
   assert(cstr_parse_bool(CSTR("0")) == false);
   assert(cstr_parse_bool(CSTR("false")) == false);
+  assert(cstr_parse_hex(h1) == 6719);
 }
 
 void cstr_test_advanced(void)

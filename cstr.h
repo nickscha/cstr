@@ -337,6 +337,30 @@ CSTR_API CSTR_INLINE cstr_bool cstr_parse_bool(cstr s)
   return (cstr_equals(s, CSTR("1")) || cstr_equals(s, CSTR("true")));
 }
 
+CSTR_API CSTR_INLINE int cstr_parse_hex(cstr s)
+{
+  long i;
+  int r = 0;
+  for (i = 0; i < s.len; i++)
+  {
+    char c = s.data[i];
+
+    if (c >= '0' && c <= '9')
+    {
+      r = (r << 4) + (c - '0');
+    }
+    else if (c >= 'A' && c <= 'F')
+    {
+      r = (r << 4) + (c - 'A' + 10);
+    }
+    else if (c >= 'a' && c <= 'f')
+    {
+      r = (r << 4) + (c - 'a' + 10);
+    }
+  }
+  return (r);
+}
+
 CSTR_API CSTR_INLINE int cstr_parse_int(cstr s)
 {
   int r = 0;
