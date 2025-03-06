@@ -297,6 +297,16 @@ CSTR_API CSTR_INLINE int cstr_last_index_of(cstr s, char c)
   return ((int)-1);
 }
 
+CSTR_API CSTR_INLINE cstr cstr_strip_quotes(cstr s)
+{
+  if (s.len >= 2 && ((s.data[0] == '"' && s.data[s.len - 1] == '"') ||
+                     (s.data[0] == '\'' && s.data[s.len - 1] == '\'')))
+  {
+    return (cstr_span(s.data + 1, s.data + s.len - 1));
+  }
+  return (s);
+}
+
 CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
 {
   cstr_cut_marker result = {0};

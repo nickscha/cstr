@@ -103,6 +103,8 @@ void cstr_test_advanced(void)
 {
   cstr s1 = CSTR("test");
   cstr s2 = CSTR("this is a long sequence and is a string");
+  cstr s3 = CSTR("\"this string has quotes\"");
+  cstr s4 = CSTR("\'abc\'");
   assert(cstr_starts_with(s1, CSTR("te")));
   assert(cstr_ends_with(s1, CSTR("st")));
   assert(cstr_count_char(s1, 't') == 2);
@@ -119,6 +121,8 @@ void cstr_test_advanced(void)
   assert(cstr_equals_ignore_case(s1, CSTR("TEST")) == true);
   assert(cstr_equals_ignore_case(s1, CSTR("tESt")) == true);
   assert(cstr_equals_ignore_case(s1, CSTR("test ")) == false);
+  assert(cstr_equals(cstr_strip_quotes(s3), CSTR("this string has quotes")) == true);
+  assert(cstr_equals(cstr_strip_quotes(s4), CSTR("abc")) == true);
 }
 
 int main(void)
