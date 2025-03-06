@@ -134,10 +134,10 @@ CSTR_API CSTR_INLINE int cstr_index_of(cstr s, char c)
   {
     if (s.data[i] == c)
     {
-      return (i);
+      return ((int)i);
     }
   }
-  return (-1);
+  return ((int)-1);
 }
 
 CSTR_API CSTR_INLINE int cstr_last_index_of(cstr s, char c)
@@ -148,10 +148,10 @@ CSTR_API CSTR_INLINE int cstr_last_index_of(cstr s, char c)
   {
     if (s.data[i] == c)
     {
-      return (i);
+      return ((int)i);
     }
   }
-  return (-1);
+  return ((int)-1);
 }
 
 CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
