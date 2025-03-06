@@ -90,6 +90,10 @@ void cstr_test_parsing(void)
 
   assert(CSTR_TEST_FLOAT_COMPARISION(r1, 123456));
   assert(CSTR_TEST_FLOAT_COMPARISION(r2, -123456));
+  assert(cstr_parse_bool(CSTR("1")) == true);
+  assert(cstr_parse_bool(CSTR("true")) == true);
+  assert(cstr_parse_bool(CSTR("0")) == false);
+  assert(cstr_parse_bool(CSTR("false")) == false);
 }
 
 int main(void)

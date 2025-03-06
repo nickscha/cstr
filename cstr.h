@@ -79,12 +79,12 @@ CSTR_API CSTR_INLINE int cstr_memcmp(const void *s1, const void *s2, long n)
   {
     if (*p1 != *p2)
     {
-      return *p1 - *p2;
+      return (*p1 - *p2);
     }
     p1++;
     p2++;
   }
-  return 0;
+  return (0);
 }
 
 CSTR_API CSTR_INLINE cstr cstr_span(char *beg, char *end)
@@ -177,6 +177,10 @@ CSTR_API CSTR_INLINE cstr_cut_marker cstr_cut(cstr s, char c)
   result.tail = cstr_span(cut + result.found, end);
 
   return (result);
+}
+
+CSTR_API CSTR_INLINE cstr_bool cstr_parse_bool(cstr s) {
+  return (cstr_equals(s, CSTR("1")) || cstr_equals(s, CSTR("true")));
 }
 
 CSTR_API CSTR_INLINE int cstr_parse_int(cstr s)
