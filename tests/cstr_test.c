@@ -129,6 +129,21 @@ void cstr_test_advanced(void)
   assert(cstr_hash(s1) == 3556498);
 }
 
+void cstr_test_data_manipulating_functions(void)
+{
+  char b1[] = "hello world";
+  cstr s1 = cstr_init_mut(b1, sizeof(b1) - 1);
+
+  cstr_reverse(s1);
+  assert(cstr_equals(s1, CSTR("dlrow olleh")));
+  cstr_to_uppercase(s1);
+  assert(cstr_equals(s1, CSTR("DLROW OLLEH")));
+  cstr_to_lowercase(s1);
+  assert(cstr_equals(s1, CSTR("dlrow olleh")));
+  cstr_reverse(s1);
+  assert(cstr_equals(s1, CSTR("hello world")));
+}
+
 int main(void)
 {
 
@@ -137,6 +152,7 @@ int main(void)
   cstr_test_cut_print();
   cstr_test_parsing();
   cstr_test_advanced();
+  cstr_test_data_manipulating_functions();
 
   return 0;
 }

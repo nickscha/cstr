@@ -314,7 +314,7 @@ CSTR_API CSTR_INLINE unsigned long cstr_hash(cstr s)
 
   for (i = 0; i < s.len; ++i)
   {
-    hash = 31 * hash + (unsigned long) s.data[i];
+    hash = 31 * hash + (unsigned long)s.data[i];
   }
 
   return (hash);
@@ -442,6 +442,48 @@ CSTR_API CSTR_INLINE float cstr_parse_float(cstr s)
     }
   }
   return (sign * r * (((cstr_bool)exp) ? exp : 1.0f));
+}
+
+/* Mutable/data changing functions start here */
+CSTR_API cstr cstr_init_mut(char *s, long size)
+{
+  return (cstr_init(s, size));
+}
+
+CSTR_API CSTR_INLINE void cstr_reverse(cstr s)
+{
+  long i, j;
+  char temp;
+  for (i = 0, j = s.len - 1; i < j; ++i, --j)
+  {
+    temp = s.data[i];
+    s.data[i] = s.data[j];
+    s.data[j] = temp;
+  }
+}
+
+CSTR_API CSTR_INLINE void cstr_to_uppercase(cstr s)
+{
+  long i;
+  for (i = 0; i < s.len; ++i)
+  {
+    if (s.data[i] >= 'a' && s.data[i] <= 'z')
+    {
+      s.data[i] -= 32;
+    }
+  }
+}
+
+CSTR_API CSTR_INLINE void cstr_to_lowercase(cstr s)
+{
+  long i;
+  for (i = 0; i < s.len; ++i)
+  {
+    if (s.data[i] >= 'A' && s.data[i] <= 'Z')
+    {
+      s.data[i] += 32;
+    }
+  }
 }
 
 #endif /* CSTR_H */
