@@ -132,7 +132,7 @@ void cstr_test_advanced(void)
 void cstr_test_data_manipulating_functions(void)
 {
   char b1[] = "hello world";
-  cstr s1 = cstr_init_mut(b1, sizeof(b1) - 1);
+  cstr s1 = cstr_init(b1, sizeof(b1) - 1);
 
   cstr_reverse(s1);
   assert(cstr_equals(s1, CSTR("dlrow olleh")));

@@ -445,11 +445,6 @@ CSTR_API CSTR_INLINE float cstr_parse_float(cstr s)
 }
 
 /* Mutable/data changing functions start here */
-CSTR_API cstr cstr_init_mut(char *s, long size)
-{
-  return (cstr_init(s, size));
-}
-
 CSTR_API CSTR_INLINE void cstr_reverse(cstr s)
 {
   long i, j;
