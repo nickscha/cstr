@@ -34,6 +34,7 @@ void cstr_test_basic_functions(void)
   assert(cstr_last_index_of(t5, 's') == 7);
   assert(cstr_index_of_substring(t1, CSTR("is")) == 2);
   assert(cstr_index_of_substring(t1, CSTR("z")) == -1);
+  assert(cstr_index_of_substring(t1, CSTR("st")) == 12);
 }
 
 void cstr_test_cut(void)
