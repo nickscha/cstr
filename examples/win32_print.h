@@ -11,11 +11,15 @@ LICENSE
 #ifndef WIN32_PRINT_H
 #define WIN32_PRINT_H
 
+#ifndef _WINDOWS_
+
 #define STD_OUTPUT_HANDLE ((unsigned long)-11)
 
 void *GetStdHandle(unsigned long nStdHandle);
 int WriteConsoleA(void *hConsoleOutput, const void *lpBuffer, unsigned long nNumberOfCharsToWrite, unsigned long *lpNumberOfCharsWritten, void *lpReserved);
 int wsprintfA(char *unnamedParam1, const char *unnamedParam2, ...);
+
+#endif
 
 unsigned long win32_lstrlen(const char *str)
 {
