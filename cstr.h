@@ -3,13 +3,16 @@
 A C89 standard compliant, single header, nostdlib (no C Standard Library) String library.
 
 USAGE
-    // Use assert to break/stop program when expression is not met
-    assert(1 == 1);
+    cstr t1 = CSTR("  spaces  ");
+    if(!cstr_equals(cstr_trim(t1), CSTR("spaces"))) {
+    }
 
-    // Use test as an conditional expression. If it fails it will log out the result but the program will continue
-    test(10 % 5 == 0);
-
-
+    char b1[] = "hello world";
+    cstr s1 = cstr_init(b1, sizeof(b1) - 1);
+    cstr_reverse(s1);      
+    cstr_to_uppercase(s1); 
+    cstr_to_lowercase(s1);
+  
 LICENSE
 
   Placed in the public domain and also MIT licensed.
@@ -59,6 +62,8 @@ typedef struct cstr_cut_marker
   cstr tail;
   cstr_bool found;
 } cstr_cut_marker;
+
+#define CSTR_STRLEN(s) (sizeof((s)) - 1)
 
 CSTR_API CSTR_INLINE cstr cstr_init(char *s, long len)
 {
