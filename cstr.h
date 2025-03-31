@@ -63,8 +63,6 @@ typedef struct cstr_cut_marker
   cstr_bool found;
 } cstr_cut_marker;
 
-#define CSTR_STRLEN(s) (sizeof((s)) - 1)
-
 CSTR_API CSTR_INLINE cstr cstr_init(char *s, long len)
 {
   cstr result = {0};
@@ -73,7 +71,8 @@ CSTR_API CSTR_INLINE cstr cstr_init(char *s, long len)
   return (result);
 }
 
-#define CSTR(s) (cstr_init((s), sizeof(s) - 1))
+#define CSTR_STRLEN(s) (sizeof((s)) - 1)
+#define CSTR(s) (cstr_init((s), CSTR_STRLEN(s)))
 
 CSTR_API CSTR_INLINE int cstr_memcmp(const void *s1, const void *s2, long n)
 {
