@@ -12,13 +12,13 @@ Download or clone cstr.h and include it in your project.
 
 int main() {
 
-    /* Mutable String */
+    /* Immutable String */
     cstr t1 = CSTR("  spaces  ");
     if(!cstr_equals(cstr_trim(t1), CSTR("spaces"))) {
       /* ... */
     }
 
-    /* Immutable String functions */
+    /* Mutable String functions */
     char b1[] = "hello world";
     cstr s1 = cstr_init(b1, sizeof(b1) - 1);
     cstr_reverse(s1);      /* "dlrow olleh" */
